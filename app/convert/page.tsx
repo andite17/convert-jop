@@ -283,26 +283,6 @@ const TableInputForm = () => {
                                             '{row.unit}',{row.item_type_id}){index == rows.length - 1 ? ";" : ","}
                                         </code>
                                     </pre>
-
-                                    // <div className="block" key={index}>
-                                    //     <code style={{fontSize: "18px"}}>
-                                    //         INSERT INTO public.m_item
-                                    //         (name_item,code_item,created_on,modified_on,height,width,length,unit,item_type_id)
-                                    //         VALUES <br/>
-                                    //         ('{row.name_item}', '{row.code_item}', now(),
-                                    //         now(), {row.length}, {row.width}, {row.height},
-                                    //         '{row.unit}',{row.item_type_id});
-                                    //     </code>
-                                    // </div>
-
-
-                                    // <div className="block" key={index}>INSERT INTO public.m_item
-                                    //     (name_item,code_item,created_on,modified_on,height,width,length,unit,item_type_id)
-                                    //     VALUES <br/>
-                                    //     ('{row.name_item}', '{row.code_item}', now(),
-                                    //     now(), {row.length}, {row.width}, {row.height},
-                                    //     '{row.unit}',{row.item_type_id});
-                                    // </div>
                                 )
                             })}
                             </code>
@@ -314,51 +294,43 @@ const TableInputForm = () => {
                         <h5>another query</h5>
                         {rows.map((row, index) => {
                             return (
-                                <pre>
-                                <code key={index} style={{fontSize: "18px"}}>
-                                    ('{row.name_item}', '{row.code_item}', {row.length}, {row.width}, {row.height}, '{row.unit}'){index == rows.length - 1 ? ";" : ","}
-                                </code>
-                            </pre>
+                                <pre key={index}>
+                                    <code key={index} style={{fontSize: "18px"}}>
+                                        ('{row.name_item}', '{row.code_item}', {row.length}, {row.width}, {row.height}, '{row.unit}'){index == rows.length - 1 ? ";" : ","}
+                                    </code>
+                                </pre>
                             )
                         })}
                     </div>
 
 
-                    <div className="mt-12 flex flex-col">
-                        <h3>DATA STEP DETAILS</h3>
-                        {rows.map((row, index) => {
-                            return (
-                                <div className="block" key={index}>
-                                    <code style={{fontSize: "18px"}}>
-                                        INSERT INTO t_steps_details (
-                                        montase, cost_allocation, quantity, steps_id, item_id, created_on, modified_on,
-                                        front_side, back_side, "type", as_inventory
-                                        ) VALUES <br/>
-                                        ('{row.mata}', '{row.alokasi_biaya}', {row.quantity}, 'MANUAL INPUT STEP ID',
-                                        (SELECT id
-                                        FROM m_item WHERE code_item = '{row.code_item}')
-                                        now(),
-                                        now(), {row.front_side.length > 0 ? row.front_side.length : null}, {row.front_side.length > 0 ? row.front_side.length : null},
-                                        '{row.type_item}',
-                                        true);
-                                    </code>
-                                </div>
-
-
-                                // <div className="block" key={index}>INSERT INTO t_steps_details (
-                                //     montase, cost_allocation, quantity, steps_id, item_id, created_on, modified_on,
-                                //     front_side, back_side, "type", as_inventory
-                                //     )
-                                //     VALUES <br/>
-                                //     ('{row.mata}', '{row.alokasi_biaya}', {row.quantity}, 'MANUAL INPUT STEP ID', (SELECT id
-                                //     FROM m_item WHERE code_item = '{row.code_item}')
-                                //     now(),
-                                //     now(), {row.front_side.length > 0 ? row.front_side.length : null}, {row.front_side.length > 0 ? row.front_side.length : null},
-                                //     '{row.type_item}',
-                                //     true);
-                                // </div>
-                            )
-                        })}
+                <div className="mt-12 flex flex-col">
+                    <h3>DATA STEP DETAILS</h3>
+                    <div className="block">
+                        <code style={{fontSize: "18px"}}>
+                            INSERT INTO t_steps_details (
+                            montase, cost_allocation, quantity, steps_id, item_id, created_on,
+                            modified_on,
+                            front_side, back_side, "type", as_inventory
+                            ) VALUES <br/>
+                            {rows.map((row, index) => {
+                                return (
+                                    <pre key={index}>
+                                        <code style={{fontSize: "18px"}}>
+                                            ('{row.mata}', '{row.alokasi_biaya}', {row.quantity}, 'MANUAL INPUT STEP
+                                            ID',
+                                            (SELECT id
+                                            FROM m_item WHERE code_item = '{row.code_item}')
+                                            now(),
+                                            now(), {row.front_side.length > 0 ? row.front_side.length : null}, {row.front_side.length > 0 ? row.front_side.length : null},
+                                            '{row.type_item}',
+                                            true){index == rows.length - 1 ? ";" : ","}
+                                        </code>
+                                    </pre>
+                                )
+                            })}
+                        </code>
+                    </div>
                     </div>
                 </div>
         </form>
