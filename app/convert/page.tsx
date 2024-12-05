@@ -1,15 +1,11 @@
 "use client"
 
 import React, { useState } from "react";
-import Highlight from 'react-highlight';
 
 const TableInputForm = () => {
 
     // State for form data
     const [rows, setRows] = useState([
-        // {
-        //     name: "", email: "", age: ""
-        // }
         {
             id : 0,
             name_item : "",
@@ -29,7 +25,7 @@ const TableInputForm = () => {
             back_side: "",
             alokasi_biaya: 0,
             quantity: 0,
-            type_item: "",
+            type_item: "INPUT",
             type_state: false
         },
     ]);
@@ -89,7 +85,7 @@ const TableInputForm = () => {
             back_side: "",
             alokasi_biaya: 0,
             quantity: 0,
-            type_item: "",
+            type_item: "INPUT",
             type_state: false
         }]);
     };
